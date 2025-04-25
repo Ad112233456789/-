@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <style>
+    body {  font-family: Arial; background: #f0f8ff; padding: 30px; }
+    h2 { color: #007bff; text-align: center; }
+    table {width: 100%; border-collapse: collapse; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 12px; overflow: hidden; }
+    th, td {border: 1px solid #000000;  padding: 12px; border-bottom: 1px solid #ddd; text-align: center; }
+    th { background: #007bff; color: white; }
+    .button-a { padding: 12px 50px; font-size: 1em; border: none; background: #dc3545; margin-top: 2%; color: white; border-radius: 8px; cursor: pointer; }
+    .button-b { padding: 12px 30px; font-size: 1em; border: none; background: #04888E; color: white; border-radius: 8px; cursor: pointer; margin-top: 1%; font-size: 15.5px;}
+    tbody{
+    
+      height: 20px;
+    }
+    .box-button{
+      width: 180px;
+      background: #FFFFFF;
+    border: 1px solid #000000;
+    }
+  </style>
+</head>
+<body>
+  <h2>بيانات الاستهلاك</h2>
+  <table>
+    <thead>
+      <tr><th>قيمة الفاتورة</th><th>التاريخ</th></tr>
+    </thead>
+    <tbody id="dataBody"></tbody>
+  </table>
+  <br />
+  <div class="box-button">
+  <button class="button-a" onclick="deleteData()">حذف البيانات</button>
+  <br />
+  <button class="button-b" onclick="nextData()">الحصول على فاتورتي</button>
+  </div>
+  <script>
+    const records = JSON.parse(localStorage.getItem("records") || "[]");
+    const tbody = document.getElementById("dataBody");
+    records.forEach(r => {
+      const row = `<tr><td>${r.price}</td><td>${r.date}</td></tr>`;
+      tbody.innerHTML += row;
+    });
+
+    function deleteData() {
+      localStorage.removeItem("records"); // حذف البيانات من localStorage
+      tbody.innerHTML = ""; // مسح المحتوى في الجدول
+      alert("تم حذف البيانات بنجاح!");
+    }
+    function nextData(){
+      window.location.href="invoice.html";
+    }
+  </script>
+</body>
+</html>

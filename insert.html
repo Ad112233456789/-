@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+  
+  <style>
+    body { font-family: Arial; background: #eef7fc; padding: 40px; }
+    .form-box { background: white; padding: 20px; border-radius: 16px; max-width: 290px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; color: #007bff; }
+    input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc; }
+    button{
+       width: 100%; padding: 10px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc; 
+      
+    }
+    button { background: #007bff; color: white; border: none; }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>إدخال بيانات استهلاك المياه</h2>
+    <input type="number" id="price" placeholder="قيمة الفاتورة (ريال)">
+    <input type="date" id="date">
+    <button onclick="saveData()">حفظ</button>
+  <button onclick="nextData()">الاطلاع على البيانات المحفوظة</button>
+  </div>
+  <script>
+    function saveData() {
+      const price = document.getElementById("price").value;
+      const date = document.getElementById("date").value;
+      let records = JSON.parse(localStorage.getItem("records") || "[]");
+      records.push({ price, date });
+      localStorage.setItem("records", JSON.stringify(records));
+      window.location.href = "data.html";
+   
+    }
+    function nextData(){
+      window.location.href="data.html";
+    }
+  </script>
+</body>
+</html>
